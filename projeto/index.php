@@ -14,8 +14,8 @@
     </div>
     <div class="container-fluid">
         <main class="container mt-4">
-            <div class="card" style="width: 25rem">
-                <div class="card-body">
+            <div class="card" style="width: 50%" >
+                <div class="card-body " >
                     <div class="container-fluid mbt-3">
 
                         <?php include './form_cliente.php'; ?>
