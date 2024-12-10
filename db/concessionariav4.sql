@@ -539,6 +539,17 @@ INSERT INTO tb_auditoria (id_cliente, id_funcionario, id_venda_peca, id_venda_ve
 (10, 13, 10, 10, 10, 1, '2024-10-30 16:00:00');
 
 */
+DROP TABLE historico_salario;
+CREATE TABLE historico_salario(
+	id_historico INT PRIMARY KEY AUTO_INCREMENT,
+    id_funcionario INT,
+    salario_antigo DECIMAL(10,2),
+    salario_novo DECIMAL(10,2),
+    data_alteracao DATETIME,
+    FOREIGN KEY (id_funcionario) REFERENCES tb_funcionario(id_funcionario)
+);
+
+
 # PROCEDURE
 DELIMITER $$
 CREATE PROCEDURE cadastra_funcionario(
@@ -558,7 +569,9 @@ BEGIN
     ORDER BY id_funcionario DESC
     LIMIT 1;
 END;
-
+DELIMITER ;
+CALL cadastra_funcionario('Igor', '15154', 'ewdd', 4554, '2024-04-05', 1, 1);
+SELECT * FROM tb_funcionario;
 DELIMITER $$
 CREATE PROCEDURE cadastra_peca(
     IN p_descricao VARCHAR(255),
@@ -575,9 +588,40 @@ BEGIN
     ORDER BY id_peca DESC
     LIMIT 1;
 END;
-DELIMITER ;
-CALL cadastra_peca('Chave Philipis', 'Bosch', 15.00, 1, 15);
+CALL cadastra_peca('Chave ', 'Bosch', 15.00, 1, 15);
 
+DELIMITER $$
+CREATE PROCEDURE aumentarsalario(
+	a_id INT, 
+    a_aumento DECIMAL(10,2))
+BEGIN
+	DECLARE f_salario_antigo DECIMAL(10,2);
+    DECLARE f_salario_novo DECIMAL(10,2);
+    -- Busca o salário atual do funcionário
+    SELECT salario INTO f_salario_antigo FROM tb_funcionario
+    WHERE id_funcionario = a_id;
+    -- Calcula novo salário com base no aumento
+    SET f_salario_novo = f_salario_antigo * (1 + (a_aumento/100));
+    -- Atualizar o salário do funcionário
+    UPDATE tb_funcionario
+    SET salario = f_salario_novo
+    WHERE id_funcionario = a_id;
+    -- Atualizar a tabela histórico
+    INSERT INTO historico_salario
+    (id_funcionario,salario_antigo,salario_novo,data_alteracao)
+    VALUES
+    (a_id,f_salario_antigo,f_salario_novo,curdate());
+    SELECT f.nome, h.* FROM tb_funcionario as f
+	INNER JOIN historico_salario as h ON f.id_funcionario = h.id_funcionario;
+    
+END$$
+DELIMITER ;
+DROP PROCEDURE aumentarsalario;
+CALL aumentarsalario(5, 15);
+
+SELECT * FROM tb_funcionario WHERE id_funcionario = 1;
+SELECT f.nome, h.* FROM tb_funcionario as f
+INNER JOIN tb_historico_salario as h ON f.id_funcionario = h.id_funcionario;
 
 
 SELECT * FROM tb_estoque_peca;
