@@ -1,4 +1,4 @@
-CREATE DATABASE db_concessionaria;
+/*CREATE DATABASE db_concessionaria;
 USE db_concessionaria;
 DROP DATABASE db_concessionaria;
 -- 2
@@ -104,7 +104,7 @@ CREATE TABLE tb_endereco_filial (
 /*ALTER TABLE tb_filial
 ADD COLUMN gerente_responsavel INT,
 ADD CONSTRAINT fk_gerente_responsavel FOREIGN KEY (gerente_responsavel) REFERENCES tb_funcionario(id_funcionario);
-*/
+
 
 DROP TABLE tb_filial;
 DROP TABLE tb_funcionario;
@@ -114,10 +114,10 @@ SHOW tables;
 CREATE TABLE tb_funcionario (
     id_funcionario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-    cpf VARCHAR(11) UNIQUE NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
     cargo VARCHAR(50),
     salario DECIMAL(10, 2),
-    data_admissao DATETIME,
+    data_admissao DATE,
     id_filial INT,
     id_setor INT,
     FOREIGN KEY (id_filial) REFERENCES tb_filial(id_filial),
@@ -373,48 +373,49 @@ INSERT INTO tb_setor (nome, descricao) VALUES
 ('Estoque de Peças', 'Administra o inventário de peças e componentes para manutenção e reparo.'),
 ('Oficina', 'Realiza serviços de manutenção e reparo de veículos.');
 
-INSERT INTO tb_funcionario (nome, cpf, cargo, salario, data_admissao, id_filial, id_setor) VALUES
-('Ana Souza', '12345678901', 'Gerente', 8000.00, '2021-01-15 09:00:00', 1, 1),
-('Carlos Lima', '23456789012', 'Gerente', 8500.00, '2020-05-20 10:00:00', 1, 2),
-('Beatriz Almeida', '34567890123', 'Gerente', 9000.00, '2019-07-10 11:00:00', 2, 3),
-('Marcos Pereira', '45678901234', 'Analista', 4500.00, '2022-03-22 08:00:00', 2, 1),
-('Fernanda Costa', '56789012345', 'Assistente', 3000.00, '2021-06-15 09:00:00', 3, 1),
-('Rafael Rocha', '67890123456', 'Analista', 4700.00, '2020-08-30 12:00:00', 3, 2),
-('Juliana Melo', '78901234567', 'Coordenador', 6000.00, '2019-02-25 09:00:00', 3, 3),
-('Gabriel Oliveira', '89012345678', 'Estagiário', 1500.00, '2021-11-01 13:00:00', 3, 1),
-('Patrícia Souza', '90123456789', 'Coordenador', 6100.00, '2020-09-05 10:00:00', 2, 2),
-('Lucas Moreira', '01234567890', 'Analista', 4600.00, '2022-01-15 11:00:00', 2, 3),
-('Sofia Ribeiro', '11122233344', 'Assistente', 2800.00, '2021-03-10 14:00:00', 1, 1),
-('Miguel Ferreira', '22233344455', 'Analista', 4800.00, '2020-06-20 09:00:00', 1, 2),
-('Lara Azevedo', '33344455566', 'Coordenador', 6200.00, '2019-04-18 12:00:00', 3, 3),
-('Daniel Alves', '44455566677', 'Estagiário', 1400.00, '2021-08-22 10:00:00', 2, 1),
-('Camila Pinto', '55566677788', 'Analista', 4700.00, '2020-10-15 15:00:00', 3, 2),
-('Matheus Martins', '66677788899', 'Assistente', 3100.00, '2019-12-05 11:00:00', 2, 3),
-('Larissa Gomes', '77788899900', 'Coordenador', 6300.00, '2021-02-25 16:00:00', 1, 1),
-('André Oliveira', '88899900011', 'Estagiário', 1500.00, '2020-07-18 10:00:00', 1, 2),
-('Amanda Dias', '99900011122', 'Analista', 4900.00, '2021-05-30 13:00:00', 3, 3),
-('Rodrigo Cardoso', '00011122233', 'Assistente', 3200.00, '2022-03-12 14:00:00', 2, 1),
-('Elon Musk', '98765432101', 'Gerente', 8000.00, '2021-01-15 09:00:00', 1, 1),
-('Oprah Winfrey', '87654321012', 'Gerente', 8500.00, '2020-05-20 10:00:00', 1, 2),
-('Jeff Bezos', '76543210923', 'Gerente', 9000.00, '2019-07-10 11:00:00', 2, 3),
-('Mark Zuckerberg', '65432109834', 'Analista', 4500.00, '2022-03-22 08:00:00', 2, 1),
-('Serena Williams', '54321098745', 'Assistente', 3000.00, '2021-06-15 09:00:00', 3, 1),
-('Bill Gates', '43210987656', 'Analista', 4700.00, '2020-08-30 12:00:00', 3, 2),
-('Taylor Swift', '32109876567', 'Coordenador', 6000.00, '2019-02-25 09:00:00', 2, 3),
-('Rihanna Fenty', '21098765478', 'Estagiário', 1500.00, '2021-11-01 13:00:00', 3, 1),
-('LeBron James', '10987654389', 'Coordenador', 6100.00, '2020-09-05 10:00:00', 1, 2),
-('Emma Watson', '90876543290', 'Analista', 4600.00, '2022-01-15 11:00:00', 2, 3),
-('Tom Hanks', '80765432101', 'Assistente', 2800.00, '2021-03-10 14:00:00', 3, 1),
-('Beyoncé Knowles', '70654321012', 'Analista', 4800.00, '2020-06-20 09:00:00', 1, 2),
-('Chris Hemsworth', '60543210923', 'Coordenador', 6200.00, '2019-04-18 12:00:00', 2, 3),
-('Zendaya Coleman', '50432109834', 'Estagiário', 1400.00, '2021-08-22 10:00:00', 3, 1),
-('Robert Downey Jr.', '40321098745', 'Analista', 4700.00, '2020-10-15 15:00:00', 1, 2),
-('Scarlett Johansson', '30210987656', 'Assistente', 3100.00, '2019-12-05 11:00:00', 1, 3),
-('Chris Evans', '20109876567', 'Coordenador', 6300.00, '2021-02-25 16:00:00', 2, 1),
-('Tom Holland', '10098765478', 'Estagiário', 1500.00, '2020-07-18 10:00:00', 3, 2),
-('Gal Gadot', '99087654389', 'Analista', 4900.00, '2021-05-30 13:00:00', 1, 3),
-('Henry Cavill', '88076543290', 'Assistente', 3200.00, '2022-03-12 14:00:00', 2, 1),
-('Morgan Freeman', '77065432101', 'Gerente', 8800.00, '2018-07-19 09:00:00', 1, 2);
+INSERT INTO tb_funcionario (nome, cpf, cargo, salario, data_admissao, id_filial, id_setor) VALUES 
+('Ana Souza', '12345678901', 'Gerente', 8000.00, '2021-01-15', 1, 1),
+('Carlos Lima', '23456789012', 'Gerente', 8500.00, '2020-05-20', 1, 2),
+('Beatriz Almeida', '34567890123', 'Gerente', 9000.00, '2019-07-10', 2, 3),
+('Marcos Pereira', '45678901234', 'Analista', 4500.00, '2022-03-22', 2, 1),
+('Fernanda Costa', '56789012345', 'Assistente', 3000.00, '2021-06-15', 3, 1),
+('Rafael Rocha', '67890123456', 'Analista', 4700.00, '2020-08-30', 3, 2),
+('Juliana Melo', '78901234567', 'Coordenador', 6000.00, '2019-02-25', 3, 3),
+('Gabriel Oliveira', '89012345678', 'Estagiário', 1500.00, '2021-11-01', 3, 1),
+('Patrícia Souza', '90123456789', 'Coordenador', 6100.00, '2020-09-05', 2, 2),
+('Lucas Moreira', '01234567890', 'Analista', 4600.00, '2022-01-15', 2, 3),
+('Sofia Ribeiro', '11122233344', 'Assistente', 2800.00, '2021-03-10', 1, 1),
+('Miguel Ferreira', '22233344455', 'Analista', 4800.00, '2020-06-20', 1, 2),
+('Lara Azevedo', '33344455566', 'Coordenador', 6200.00, '2019-04-18', 3, 3),
+('Daniel Alves', '44455566677', 'Estagiário', 1400.00, '2021-08-22', 2, 1),
+('Camila Pinto', '55566677788', 'Analista', 4700.00, '2020-10-15', 3, 2),
+('Matheus Martins', '66677788899', 'Assistente', 3100.00, '2019-12-05', 2, 3),
+('Larissa Gomes', '77788899900', 'Coordenador', 6300.00, '2021-02-25', 1, 1),
+('André Oliveira', '88899900011', 'Estagiário', 1500.00, '2020-07-18', 1, 2),
+('Amanda Dias', '99900011122', 'Analista', 4900.00, '2021-05-30', 3, 3),
+('Rodrigo Cardoso', '00011122233', 'Assistente', 3200.00, '2022-03-12', 2, 1),
+('Elon Musk', '98765432101', 'Gerente', 8000.00, '2021-01-15', 1, 1),
+('Oprah Winfrey', '87654321012', 'Gerente', 8500.00, '2020-05-20', 1, 2),
+('Jeff Bezos', '76543210923', 'Gerente', 9000.00, '2019-07-10', 2, 3),
+('Mark Zuckerberg', '65432109834', 'Analista', 4500.00, '2022-03-22', 2, 1),
+('Serena Williams', '54321098745', 'Assistente', 3000.00, '2021-06-15', 3, 1),
+('Bill Gates', '43210987656', 'Analista', 4700.00, '2020-08-30', 3, 2),
+('Taylor Swift', '32109876567', 'Coordenador', 6000.00, '2019-02-25', 2, 3),
+('Rihanna Fenty', '21098765478', 'Estagiário', 1500.00, '2021-11-01', 3, 1),
+('LeBron James', '10987654389', 'Coordenador', 6100.00, '2020-09-05', 1, 2),
+('Emma Watson', '90876543290', 'Analista', 4600.00, '2022-01-15', 2, 3),
+('Tom Hanks', '80765432101', 'Assistente', 2800.00, '2021-03-10', 3, 1),
+('Beyoncé Knowles', '70654321012', 'Analista', 4800.00, '2020-06-20', 1, 2),
+('Chris Hemsworth', '60543210923', 'Coordenador', 6200.00, '2019-04-18', 2, 3),
+('Zendaya Coleman', '50432109834', 'Estagiário', 1400.00, '2021-08-22', 3, 1),
+('Robert Downey Jr.', '40321098745', 'Analista', 4700.00, '2020-10-15', 1, 2),
+('Scarlett Johansson', '30210987656', 'Assistente', 3100.00, '2019-12-05', 1, 3),
+('Chris Evans', '20109876567', 'Coordenador', 6300.00, '2021-02-25', 2, 1),
+('Tom Holland', '10098765478', 'Estagiário', 1500.00, '2020-07-18', 3, 2),
+('Gal Gadot', '99087654389', 'Analista', 4900.00, '2021-05-30', 1, 3),
+('Henry Cavill', '88076543290', 'Assistente', 3200.00, '2022-03-12', 2, 1),
+('Morgan Freeman', '77065432101', 'Gerente', 8800.00, '2018-07-19', 1, 2);
+
 
 
 INSERT INTO tb_estoque_peca (descricao, fabricante, preco, id_filial, quantidade) VALUES
@@ -537,29 +538,56 @@ INSERT INTO tb_auditoria (id_cliente, id_funcionario, id_venda_peca, id_venda_ve
 (9, 12, 9, 9, 9, 3, '2024-09-20 14:00:00'),
 (10, 13, 10, 10, 10, 1, '2024-10-30 16:00:00');
 
-
-
-
-
-DELIMITER //
-
-CREATE PROCEDURE sp_cadastrar_cliente(
-    IN p_nome VARCHAR(100),
-    IN p_cpf VARCHAR(11),
-    IN p_email VARCHAR(100)
+*/
+# PROCEDURE
+DELIMITER $$
+CREATE PROCEDURE cadastra_funcionario(
+    IN f_nome VARCHAR(100),
+    IN f_cpf VARCHAR(11),
+    IN f_cargo VARCHAR(50),
+    IN f_salario DECIMAL(10,2),
+    IN f_data_admissao DATE,
+    IN f_id_filial INT,
+    IN f_id_setor INT
 )
-BEGIN
-    INSERT INTO tb_cliente (nome, cpf, email)
-    VALUES (p_nome, p_cpf, p_email);
+BEGIN 
+    INSERT INTO tb_funcionario (nome, cpf, cargo, salario, data_admissao, id_filial, id_setor) 
+    VALUES (f_nome, f_cpf, f_cargo, f_salario, f_data_admissao, f_id_filial, f_id_setor);
+
+    SELECT * FROM tb_funcionario 
+    ORDER BY id_funcionario DESC
+    LIMIT 1;
 END;
-delimiter ;
-CALL sp_cadastrar_cliente('Maria Silva', '1234567991', 'maria.silva@example.com');
+
+DELIMITER $$
+CREATE PROCEDURE cadastra_peca(
+    IN p_descricao VARCHAR(255),
+    IN  p_fabricante VARCHAR(100),
+    IN p_preco DECIMAL(10,2),
+    IN p_id_filial INT,
+    IN p_quantidade INT
+)
+BEGIN 
+    INSERT INTO tb_estoque_peca (descricao, fabricante, preco, id_filial, quantidade) 
+    VALUES (p_descricao, p_fabricante, p_preco, p_id_filial, p_quantidade);
+
+    SELECT * FROM tb_estoque_peca 
+    ORDER BY id_peca DESC
+    LIMIT 1;
+END;
+DELIMITER ;
+CALL cadastra_peca('Chave Philipis', 'Bosch', 15.00, 1, 15);
 
 
 
-SELECT * FROM tb_cliente;
+SELECT * FROM tb_estoque_peca;
+SELECT * FROM tb_estoque_peca 
+    ORDER BY id_peca DESC
+    LIMIT 1;
 
+SELECT * FROM tb_funcionario;
 
+SELECT * 
 SELECT * FROM tb_venda_veiculo;
 
 DESC tb_setor;
@@ -576,7 +604,9 @@ SELECT * FROM tb_telefone_cliente;
 SELECT * FROM tb_endereco_cliente;
 SELECT * FROM tb_filial;
 SELECT * FROM tb_endereco_filial;
-
+    SELECT * FROM tb_funcionario 
+    ORDER BY id_funcionario DESC
+    LIMIT 1;
 SELECT c.nome, t.telefone, t.tipo, e.bairro FROM tb_cliente as c
 LEFT JOIN tb_telefone_cliente as t
 ON c.id_cliente = t.id_cliente
