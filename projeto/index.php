@@ -1,3 +1,5 @@
+<?php require 'db.php'?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
