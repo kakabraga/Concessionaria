@@ -1,4 +1,4 @@
-/*CREATE DATABASE db_concessionaria;
+CREATE DATABASE db_concessionaria;
 USE db_concessionaria;
 DROP DATABASE db_concessionaria;
 -- 2
@@ -104,7 +104,7 @@ CREATE TABLE tb_endereco_filial (
 /*ALTER TABLE tb_filial
 ADD COLUMN gerente_responsavel INT,
 ADD CONSTRAINT fk_gerente_responsavel FOREIGN KEY (gerente_responsavel) REFERENCES tb_funcionario(id_funcionario);
-
+*/
 
 DROP TABLE tb_filial;
 DROP TABLE tb_funcionario;
@@ -550,7 +550,7 @@ CREATE TABLE historico_salario(
 );
 
 
-# PROCEDURE
+-- -------------------------------------------------- PROCEDURE'S -------------------------------------------------------------------------------
 DELIMITER $$
 CREATE PROCEDURE cadastra_funcionario(
     IN f_nome VARCHAR(100),
@@ -611,13 +611,32 @@ BEGIN
     (id_funcionario,salario_antigo,salario_novo,data_alteracao)
     VALUES
     (a_id,f_salario_antigo,f_salario_novo,curdate());
-    SELECT f.nome, h.* FROM tb_funcionario as f
+    SELECT f.nome, CONCAT('R$ ', FORMAT(salario_antigo,2,'de_DE')) as salario_antigo, CONCAT('R$ ', FORMAT(salario_novo,2,'de_DE')) as salario_novo FROM tb_funcionario as f
 	INNER JOIN historico_salario as h ON f.id_funcionario = h.id_funcionario;
     
 END$$
 DELIMITER ;
 DROP PROCEDURE aumentarsalario;
 CALL aumentarsalario(5, 15);
+
+
+
+DELIMITER $$
+CREATE FUNCTION calculadesconto(preco DECIMAL(10,2),desconto DEC(10,2))
+RETURNS DEC(10,2) DETERMINISTIC
+BEGIN
+	RETURN preco - (preco*(desconto/100));
+END $$
+DELIMITER ;
+-- ------------------------------------------------------------------------------ PROCEDIMENTOS -------------------------------------------------------------------------------------------------------------
+# INICIO DA FUNÇÃO
+-- ------------------------------------------------------------------------------- FUNÇÃO --------------------------------------------------------------------------------------------------------------------
+SELECT modelo, marca, CONCAT('R$ ', FORMAT(preco,2, 'de_DE')) as preco_antigo, CONCAT('R$ ', FORMAT(calculadesconto(preco,20),2, 'de_DE')) as preco_desconto FROM tb_estoque_veiculo;
+-- ------------------------------------------------------------------------------- FUNÇÃO -------------------------------------------------------------------------------------------------------------------
+# FIM DA FUNÇÃO
+-- ------------------------------------------------------------------------------- CONSULTAS ------------------------------------------------------------------------------------------------------------------
+
+
 
 SELECT * FROM tb_funcionario WHERE id_funcionario = 1;
 SELECT f.nome, h.* FROM tb_funcionario as f
@@ -631,7 +650,7 @@ SELECT * FROM tb_estoque_peca
 
 SELECT * FROM tb_funcionario;
 
-SELECT * 
+SELECT * ;
 SELECT * FROM tb_venda_veiculo;
 
 DESC tb_setor;
@@ -657,7 +676,7 @@ ON c.id_cliente = t.id_cliente
 INNER JOIN tb_endereco_cliente as e
 ON c.id_cliente = e.id_cliente;
 SHOW TABLES;
-
+SELECT * FROM tb_estoque_veiculo;
 SELECT * FROM tb_funcionario;
 DESC tb_telefone_funcionario;
 DROP TABLE tb_funcionario;
