@@ -15,7 +15,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" type="button" href="registrar_cliente.php">Registrar Cliente</a></li>
-            <li><button class="dropdown-item" type="button">Registrar Funcionario</button></li>
+            <li><a class="dropdown-item" type="button" href="registrar_funcionario.php">Registrar Funcionario</a></li>
             <li><button class="dropdown-item" type="button">Registrar Veiculo</button></li>
           </ul>
         </div>
