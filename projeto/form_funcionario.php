@@ -16,7 +16,7 @@
       <label for="inputPassword4" class="form-label">salario</label>
       <input type="text" name="salario" class="form-control" id="inputPassword4">
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
       <label for="inputAddress2" class="form-label">Data de Admissao</label>
       <input type="date" name="data" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
     </div>
