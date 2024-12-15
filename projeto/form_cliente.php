@@ -1,3 +1,5 @@
+<?php require 'db.php'; ?>
+
 <div class="container">
   <form class="row g-3" action="save_cliente.php" method="POST">
     <div class="col-md-6">
@@ -6,7 +8,7 @@
     </div>
     <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Email</label>
-      <input type="text"name="email" class="form-control" id="inputEmail4">
+      <input type="text" name="email" class="form-control" id="inputEmail4">
     </div>
     <div class="col-md-3">
       <label for="inputAddress" class="form-label">CPF</label>
@@ -14,7 +16,7 @@
     </div>
     <div class="col-md-3">
       <label for="inputPassword4" class="form-label">DDD</label>
-      <input type="text" name="DDD" class="form-control" id="inputPassword4">
+      <input type="text" name="ddd" class="form-control" id="inputPassword4">
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Telefone</label>
@@ -30,9 +32,16 @@
     </div>
     <div class="col-md-4">
       <label for="inputState" class="form-label">Estado</label>
-      <select id="inputState" name="estado" class="form-select">
-        <option selected></option>
-        <option value="1">1</option>
+      <select  name="estado" class="form-select">
+        <?php
+        $sql = "SELECT id_estado, sigla FROM tb_estado";
+        $resultado = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($resultado) > 0) {
+          while ($row = mysqli_fetch_assoc($resultado)) {
+        ?><option value=<?php echo $row['sigla'] ?>><?php echo $row['sigla'] ?></option>
+        <?php
+          }}
+        ?>
       </select>
     </div>
     <div class="col-md-2">
@@ -46,6 +55,6 @@
     <div class="col-12">
       <button type="submit" name='enviar' class="btn btn-primary">Registrar</button>
     </div>
-    
+
   </form>
 </div>

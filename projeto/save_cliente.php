@@ -9,7 +9,7 @@ if (isset($_POST['enviar'])) {
     $telefone = mysqli_real_escape_string($conn,$_POST['telefone']);
      $endereco = mysqli_real_escape_string($conn,$_POST['endereco']);
      $cidade = mysqli_real_escape_string($conn,$_POST['cidade']);
-     $estado = mysqli_real_escape_string($conn,$_POST['rua']);
+     $estado = mysqli_real_escape_string($conn,$_POST['estado']);
      $complemento = mysqli_real_escape_string($conn,$_POST['complemento']);
      $rua = mysqli_real_escape_string($conn,$_POST['rua']);
 
@@ -20,15 +20,15 @@ if (isset($_POST['enviar'])) {
     if (mysqli_query($conn, $sql)) {
         $id_cliente = mysqli_insert_id($conn);
         $sql_telefone =  "INSERT INTO tb_telefone_cliente (ddd, telefone, id_cliente) VALUES ('$ddd', '$telefone', '$id_cliente')";
-        $sql_endereco = "INSERT INTO tb_endereco_cliente (id_cliente, rua, endereco, complemento, estado, cidade, id_cliente)
-        VALUES ('$endereco', '$complemento',  $cidade', '$estado', '$rua', '$id_cliente')";
+        $sql_endereco = "INSERT INTO tb_endereco_cliente (id_cliente, rua, endereco, complemento, estado, cidade)
+        VALUES ('$id_cliente', '$rua', '$endereco', '$complemento', '$estado',  '$cidade')";
     
     if (mysqli_query($conn, $sql_telefone) && mysqli_query($conn, $sql_endereco)) {
-        header('Location: index.php');
+        header('Location: registrar_cliente.php');
     } else {
         echo "Erro ao inserir telefone: " . mysqli_error($conn);
     }
-} else { echo "Erro ao inserir cliente: " . mysqli_error($conn);
- }
-mysqli_close($conn);
 }
+}
+
+

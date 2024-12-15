@@ -9,6 +9,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="form_cliente.php"></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Quem Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
         <div class="btn-group">
           <button type="button" class="nav-link dropdown-toggle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Ações
@@ -19,12 +25,6 @@
             <li><button class="dropdown-item" type="button">Registrar Veiculo</button></li>
           </ul>
         </div>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Quem Somos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
       
     </div>
