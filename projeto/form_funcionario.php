@@ -23,7 +23,7 @@
     <div class="col-md-6">
       <label for="inputState" class="form-label">Filial</label>
       <select class="form-select" name="filial" aria-label="Default select example">
-        <option selected>Open this select menu</option>
+        <option selected>Selecione a Filia</option>
         <?php
         require 'db.php';
         $sql = 'SELECT nome, id_filial FROM tb_filial';
