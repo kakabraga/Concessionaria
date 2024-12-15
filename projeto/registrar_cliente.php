@@ -14,11 +14,9 @@
     <div class="wrapper">
         <?php include 'navbar.php'; ?>
         <div class="container">
-
         </div>
     </div>
     <div class="container-fluid">
-
         <main class="container mt-4 d-flex justify-content-center">
             <div class="card" style="width: 50%">
                 <div class="card-body">
