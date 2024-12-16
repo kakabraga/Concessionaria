@@ -23,6 +23,7 @@
             <li><a class="dropdown-item" type="button" href="registrar_cliente.php">Registrar Cliente</a></li>
             <li><a class="dropdown-item" type="button" href="registrar_funcionario.php">Registrar Funcionario</a></li>
             <li><a  class="dropdown-item" type="button" href="registrar_veiculo.php">Registrar Veiculo</a></li>
+            <li><a  class="dropdown-item" type="button" href="registrar_fornecedor.php">Registrar Fornecedor</a></li>
           </ul>
         </div>
       </ul>
