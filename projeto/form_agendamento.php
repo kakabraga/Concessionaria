@@ -6,7 +6,7 @@ require 'db.php';
   <form class="row g-3" action="save_agendamento.php" method="POST">
     <div class="col-md-6">
       <label for="inputText" class="form-label">Cliente</label>
-      <select class="form-select" name="filial" aria-label="Default select example">
+      <select class="form-select" name="cliente" aria-label="Default select example">
         <option selected>Selecione o Cliente</option>
         <?php
         $sql = 'SELECT id_cliente, nome FROM tb_cliente';
@@ -22,7 +22,7 @@ require 'db.php';
     </div>
     <div class="col-md-6">
       <label for="inputAddress" class="form-label">funcionario</label>
-      <select class="form-select" name="filial" aria-label="Default select example">
+      <select class="form-select" name="funcionario" aria-label="Default select example">
         <option selected>Selecione o Cliente</option>
         <?php
         $sql = 'SELECT id_funcionario, nome FROM tb_funcionario';
@@ -38,7 +38,7 @@ require 'db.php';
     </div>
     <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Serviço</label>
-      <select class="form-select" name="filial" aria-label="Default select example">
+      <select class="form-select" name="servico" aria-label="Default select example">
         <option selected>Selecione o Servico</option>
         <?php
         $sql = 'SELECT id_servico, descricao FROM tb_servico_prestado';
@@ -68,7 +68,7 @@ require 'db.php';
         } ?>
       </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="inputState" class="form-label">Setor</label>
       <select id="inputState" name="setor" class="form-select">
         <?php
@@ -84,9 +84,13 @@ require 'db.php';
         } ?>
       </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <label for="inputAddress2" class="form-label">Data de Agendamento</label>
       <input type="date" name="data" class="form-control" id="inputAddress2">
+    </div>
+    <div class="col-md-4">
+    <label for="inputAddress2" class="form-label">Data de Agendamento</label>
+      <input type="time" name="hora" class="form-control" id="inputAddress2">
     </div>
     <div class="col-12">
       <button type="submit" name='enviar' class="btn btn-primary">Registrar</button>
