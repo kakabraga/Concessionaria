@@ -14,6 +14,6 @@ if(isset($_POST['enviar'])) {
 
    $result = mysqli_query($conn, $sql);
 
-   mysqli_affected_rows($conn) > 0 ? header ('Location: agendamento.php') : die('Erro ao inserir usuario'.  mysqli_error($conn));
+   mysqli_affected_rows($conn) > 0 ? header ('Location: gerenciar_agendamento.php') : die('Erro ao inserir usuario'.  mysqli_error($conn));
 
 }

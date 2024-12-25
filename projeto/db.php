@@ -7,3 +7,4 @@ define('DB', 'db_concessionaria');
 
 $conn = mysqli_connect(HOST, USER, PASS, DB);
 
+mysqli_set_charset($conn, "utf8mb4");
