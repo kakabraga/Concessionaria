@@ -24,6 +24,7 @@
             <li><a class="dropdown-item" type="button" href="registrar_funcionario.php">Registrar Funcionario</a></li>
             <li><a  class="dropdown-item" type="button" href="registrar_veiculo.php">Registrar Veiculo</a></li>
             <li><a  class="dropdown-item" type="button" href="registrar_fornecedor.php">Registrar Fornecedor</a></li>
+            <li><a  class="dropdown-item" type="button" href="agendamento.php">Agendar Serviço</a></li>
           </ul>
         </div>
       </ul>
