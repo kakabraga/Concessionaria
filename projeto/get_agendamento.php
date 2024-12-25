@@ -8,6 +8,7 @@ INNER JOIN tb_funcionario as f ON a.id_funcionario = f.id_funcionario
 INNER JOIN tb_servico_prestado as s ON a.id_servico_prestado = s.id_servico
 INNER JOIN tb_setor as st ON a.id_setor = st.id_setor
 INNER JOIN tb_filial as fl ON a.id_filial = fl.id_filial
+ORDER BY a.data_agendamento
 ";
 
 $result = mysqli_query($conn, $sql);
@@ -21,6 +22,7 @@ $result = mysqli_query($conn, $sql);
     echo '<td>' . $r['filial'] . '</td>'; 
     echo '<td>' . $r['data_agendamento'] . '</td>'; 
     echo '<td>' . $r['hora_agendamento'] . '</td>'; 
+    echo '<td><a href="editar_agendamento.php" onclick="editarRegistro(' . $r['id_agendamento'] . ')" class="btn btn-primary">Editar</a> <a href="#" onclick="excluirRegistro(' . $r['id_agendamento'] . ')" class="btn btn-danger" name="excluir">Excluir</a></td>';
     echo '</tr>'; } 
     echo '</tbody>'; 
     echo '</table>'; 
