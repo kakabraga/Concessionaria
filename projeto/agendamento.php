@@ -13,7 +13,6 @@
     <div class="wrapper">
         <?php include 'navbar.php'; ?>
         <div class="container">
-
         </div>
     </div>
     <div class="container-fluid">
@@ -21,7 +20,7 @@
             <div class="card" style="width: 50%">
                 <div class="card-body">
                     <div class="container-fluid mbt-3">
-                        <?php include './form_funcionario.php'; ?>
+                        <?php include './form_agendamento.php'; ?>
                     </div>
                 </div>
             </div>
